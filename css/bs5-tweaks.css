@@ -1,0 +1,17 @@
+/* This stylesheet will handle the inconsistencies that I decide to update or the bootstrap 5 work arounds to make the site look like the bs4 version. There are some additional changes in the templates with use to utility classes and jumbotron */
+
+/* 
+    <a> and .btn-link come with underline by default 
+    no jumbotron, make your own with utility classes
+    no .form-group use .mb-*
+*/
+
+a,
+a.btn-link {
+    text-decoration: none;
+}
+
+/* Made this to replace hr style didnt line up with .row-content */
+.row-header {
+    border-bottom: 1px ridge;
+}
