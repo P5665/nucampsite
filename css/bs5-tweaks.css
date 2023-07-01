@@ -4,6 +4,7 @@
     <a> and .btn-link come with underline by default 
     no jumbotron, make your own with utility classes
     no .form-group use .mb-*
+    no .media and .media-body use d-flex and flex-shrink-0
 */
 
 a,
