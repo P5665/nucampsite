@@ -44,10 +44,24 @@ header h2 {
     padding: 10px;
 }
 
+#homeCarousel .carousel-inner {
+    overflow: unset;
+}
+
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.carousel {
-    border: solid #5637dd;
+.lobster {
+    font-family: "Lobster", cursive;
+}
+
+.vh-75 {
+    height: 75vh;
+}
+
+@media screen and (max-width: 380px) {
+    .slogan {
+        display: none;
+    }
 }
