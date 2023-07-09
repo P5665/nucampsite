@@ -159,7 +159,7 @@
         <div class="container">
             <div class="row row-content">
                 <div class="col-md-8 mx-auto">
-                    <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="homeCarousel" class="carousel slide">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -196,6 +196,10 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
+                        <div class="btn-group" id="carouselButton">
+                            <button class="btn btn-sm btn-danger" id="carouselPause"><i class="fa fa-pause"></i></button>
+                            <button class="btn btn-sm btn-danger" id="carouselPlay"><i class="fa fa-play"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,5 +276,25 @@
             </div>
         </footer>
         <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // For this to work need to remove data-bs-ride="carousel" from .carousel level element
+                const myCarousel = document.querySelector("#homeCarousel");
+                const pauseBtn = document.querySelector("#carouselPause");
+                const playBtn = document.querySelector("#carouselPlay");
+
+                const carouselInstance = new bootstrap.Carousel(myCarousel, {
+                    interval: 2000,
+                });
+
+                pauseBtn.addEventListener("click", function () {
+                    carouselInstance.pause();
+                });
+
+                playBtn.addEventListener("click", function () {
+                    carouselInstance.cycle();
+                });
+            });
+        </script>
     </body>
 </html>
