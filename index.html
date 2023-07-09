@@ -159,7 +159,7 @@
         <div class="container">
             <div class="row row-content">
                 <div class="col-md-8 mx-auto">
-                    <div id="homeCarousel" class="carousel slide">
+                    <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -188,6 +188,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Carousel Indicators -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -196,10 +197,8 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                        <div class="btn-group" id="carouselButton">
-                            <button class="btn btn-sm btn-danger" id="carouselPause"><i class="fa fa-pause"></i></button>
-                            <button class="btn btn-sm btn-danger" id="carouselPlay"><i class="fa fa-play"></i></button>
-                        </div>
+                        <!-- play/pause controls -->
+                        <button class="btn btn-sm btn-danger" id="carouselButton"><i class="fa fa-pause"></i></button>
                     </div>
                 </div>
             </div>
@@ -280,19 +279,25 @@
             document.addEventListener("DOMContentLoaded", function () {
                 // For this to work need to remove data-bs-ride="carousel" from .carousel level element
                 const myCarousel = document.querySelector("#homeCarousel");
-                const pauseBtn = document.querySelector("#carouselPause");
-                const playBtn = document.querySelector("#carouselPlay");
+                const carouselButton = document.querySelector("#carouselButton");
+                const carouselButtonChild = carouselButton.querySelector(".fa-pause");
 
                 const carouselInstance = new bootstrap.Carousel(myCarousel, {
                     interval: 2000,
                 });
 
-                pauseBtn.addEventListener("click", function () {
-                    carouselInstance.pause();
-                });
-
-                playBtn.addEventListener("click", function () {
-                    carouselInstance.cycle();
+                carouselButton.addEventListener("click", function () {
+                    if (carouselButtonChild.classList.contains("fa-pause")) {
+                        myCarousel.removeAttribute("data-bs-ride");
+                        carouselInstance.pause();
+                        carouselButtonChild.classList.remove("fa-pause");
+                        carouselButtonChild.classList.add("fa-play");
+                    } else {
+                        carouselInstance.cycle();
+                        myCarousel.setAttribute("data-bs-ride", "carousel");
+                        carouselButtonChild.classList.remove("fa-play");
+                        carouselButtonChild.classList.add("fa-pause");
+                    }
                 });
             });
         </script>
